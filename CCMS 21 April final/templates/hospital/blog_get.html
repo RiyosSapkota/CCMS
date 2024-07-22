@@ -1,0 +1,103 @@
+<div class="mt-5">
+{% extends 'hospital/patient_base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link
+      href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    />
+    <title>Blog</title>
+    <style>
+      .card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .card h5 {
+        color: #333;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .card .description {
+        color: #666;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        text-align: start;
+        font-weight: 500;
+      }
+
+      .card .content {
+        color: #444;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        text-align: start;
+        font-weight: 300;
+
+      }
+
+      .card .meta {
+        color: #888;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+  <div class="container">
+    <h1 class="text-center">Latest blogs post for health awarness </h1>
+    {% for post in post %}
+    <div class="card m-5">
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 300px;
+          gap: 20px;
+        "
+      >
+        <img
+          class="card-img-top"
+          src="{{ post.image }}"
+          alt="Card image cap"
+          style="max-width: 500px; height: 300px"
+        />
+        {% if post.video%}
+        <iframe
+          src="{{post.video}}"
+          width="500px"
+          height="300px"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          allowfullscreen
+          frameborder="0"
+        ></iframe>
+        {% endif %}
+      </div>
+      <h5 style="margin-top: 18px;">{{ post.title }}</h5>
+      <p class="description">{{ post.description }}</p>
+      <p class="content">{{ post.content }}</p>
+      <p class="meta">
+        Date Posted: {{ post.date_posted }} | Author: {{ post.author }}
+      </p>
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+{% endblock content %}
+
